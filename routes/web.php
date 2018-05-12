@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+
+Auth::routes();
+
+//Route::group(['middleware' => ['login']], function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+//首页
+    Route::get('/','Index\IndexController@index');
+
+    Route::get('/notification','Notification\NotificationController@notification');
+
+    Route::get('/noticomment','Notification\NotificationController@noticomment');
+
+//});
