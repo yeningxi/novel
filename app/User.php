@@ -17,10 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'password',
+        'uname', 'password','create_time','o_password',
     ];
 
     protected $primaryKey = 'uid';
+
+    protected $rememberTokenName = '';
 
     public $timestamps = false;
     /**
@@ -29,6 +31,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'//, 'remember_token',
     ];
 }

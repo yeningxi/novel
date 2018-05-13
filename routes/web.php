@@ -19,7 +19,7 @@
 
 Auth::routes();
 
-//Route::group(['middleware' => ['login']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -30,4 +30,4 @@ Auth::routes();
 
     Route::get('/noticomment','Notification\NotificationController@noticomment');
 
-//});
+});
