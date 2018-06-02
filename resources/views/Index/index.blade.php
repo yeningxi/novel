@@ -91,15 +91,18 @@
 				<ul>
 					<li><a data-href="{{url('notification')}}" data-title="公告列表" href="javascript:void(0)">公告列表</a></li>
 					<li><a data-href="{{url('/noticomment')}}" data-title="公告评论" href="javascript:void(0)">公告评论</a></li>
+					<li><a data-href="{{url('/notifiadd')}}" data-title="添加公告" href="javascript:void(0)">添加公告</a></li>
 				</ul>
 
 			</dd>
 		</dl>
 		<dl id="menu-picture">
-			<dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe613;</i> 数据中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="picture-list.html" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
+					<li><a data-href="paycount.html" data-title="充值统计" href="javascript:void(0)">充值统计</a></li>
+					<li><a data-href="usercount.html" data-title="用户统计" href="javascript:void(0)">用户统计</a></li>
+					<li><a data-href="extendscount.html" data-title="推广统计" href="javascript:void(0)">推广统计</a></li>
 				</ul>
 			</dd>
 		</dl>

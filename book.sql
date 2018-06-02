@@ -24,14 +24,14 @@ DROP TABLE IF EXISTS `accounts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `accounts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÇþµÀID',
-  `money` decimal(8,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '½áËã½ð¶î',
-  `is_account` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ÊÇ·ñ½áËã',
-  `time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ê±¼ä',
-  `proportion` decimal(3,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '±ÈÀý',
+  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ID',
+  `money` decimal(8,2) unsigned NOT NULL DEFAULT '0.00' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `is_account` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ç·ï¿½ï¿½ï¿½ï¿½',
+  `time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ê±ï¿½ï¿½',
+  `proportion` decimal(3,2) unsigned NOT NULL DEFAULT '0.00' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `channelid` (`channelid`,`time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='½áËã';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,15 +51,15 @@ DROP TABLE IF EXISTS `admin_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin_user` (
-  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ÓÃ»§id',
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ï¿½Ã»ï¿½id',
   `uname` varchar(30) NOT NULL DEFAULT '',
-  `password` varchar(20) NOT NULL DEFAULT '',
-  `hashpd` char(32) NOT NULL DEFAULT '',
+  `password` char(60) NOT NULL DEFAULT '',
+  `o_password` varchar(32) NOT NULL DEFAULT '',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0',
   `address` varchar(30) NOT NULL DEFAULT '',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '×´Ì¬',
   PRIMARY KEY (`uid`),
-  KEY `name` (`uname`,`hashpd`),
+  KEY `name` (`uname`,`password`),
   KEY `c_time` (`create_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -83,15 +83,15 @@ DROP TABLE IF EXISTS `award`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `award` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(10) unsigned NOT NULL COMMENT 'ÓÃ»§ID',
-  `bookid` int(10) unsigned NOT NULL COMMENT 'Êé¼®ID',
-  `money` int(10) unsigned NOT NULL COMMENT '´òÉÍÊé±Ò',
-  `create_time` int(10) unsigned NOT NULL COMMENT 'Ê±¼ä',
-  `type` enum('´òÉÍ','´ß¸ü') NOT NULL DEFAULT '´òÉÍ' COMMENT 'ÀàÐÍ',
+  `uid` int(10) unsigned NOT NULL COMMENT 'ï¿½Ã»ï¿½ID',
+  `bookid` int(10) unsigned NOT NULL COMMENT 'ï¿½é¼®ID',
+  `money` int(10) unsigned NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `create_time` int(10) unsigned NOT NULL COMMENT 'Ê±ï¿½ï¿½',
+  `type` enum('ï¿½ï¿½ï¿½ï¿½','ï¿½ß¸ï¿½') NOT NULL DEFAULT 'ï¿½ï¿½ï¿½ï¿½' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`,`create_time`),
   KEY `bookid` (`bookid`,`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='´ß¸ü£¬´òÉÍ';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ß¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,14 +112,14 @@ DROP TABLE IF EXISTS `balance`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `balance` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÇþµÀID',
+  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ID',
   `time` int(10) unsigned NOT NULL COMMENT '0',
-  `is_balance` enum('ÒÑ½áËã','´ý½áËã') NOT NULL DEFAULT '´ý½áËã' COMMENT 'ÊÇ·ñ½áËã',
-  `money` decimal(6,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '½áËã½ð¶î',
+  `is_balance` enum('ï¿½Ñ½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½') NOT NULL DEFAULT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' COMMENT 'ï¿½Ç·ï¿½ï¿½ï¿½ï¿½',
+  `money` decimal(6,2) unsigned NOT NULL DEFAULT '0.00' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `tc` (`channelid`,`time`),
   KEY `channel` (`channelid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÇþµÀ½áËã';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,12 +141,12 @@ DROP TABLE IF EXISTS `book_balance`;
 CREATE TABLE `book_balance` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `book_id` int(10) unsigned NOT NULL COMMENT 'BOOKID',
-  `book_name` varchar(20) NOT NULL DEFAULT '' COMMENT 'ÊéÃû',
-  `balance_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÍÆ¹ãÊý',
+  `book_name` varchar(20) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+  `balance_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Æ¹ï¿½ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `bc` (`book_id`,`balance_count`),
   KEY `count` (`balance_count`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÍÆ¹ãÇé¿ö±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,14 +167,14 @@ DROP TABLE IF EXISTS `book_case`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book_case` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§ID',
-  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Êé¼®ID',
-  `chapterid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÕÂ½ÚID',
-  `rtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÔÄ¶ÁÊ±¼ä',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ã»ï¿½ID',
+  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½é¼®ID',
+  `chapterid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Â½ï¿½ID',
+  `rtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ä¶ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `ubr` (`uid`,`bookid`,`rtime`),
   KEY `ur` (`uid`,`rtime`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÊéÇ©';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½Ç©';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,12 +196,12 @@ DROP TABLE IF EXISTS `book_sale`;
 CREATE TABLE `book_sale` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `bookid` int(10) unsigned NOT NULL DEFAULT '0',
-  `read_user` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÔÄ¶ÁÈËÊý',
-  `sale_count` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '×ÜÏúÊÛ¶î',
-  `book_name` varchar(20) NOT NULL DEFAULT '' COMMENT 'ÊéÃû',
+  `read_user` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `sale_count` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½Û¶ï¿½',
+  `book_name` varchar(20) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `bid` (`bookid`,`sale_count`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÏúÊÛÇé¿ö±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,12 +222,12 @@ DROP TABLE IF EXISTS `book_type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book_type` (
   `type_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `tp_name` varchar(20) NOT NULL DEFAULT '' COMMENT '·ÖÀàÃû³Æ',
-  `pid` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '¸¸·ÖÀàID',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
+  `tp_name` varchar(20) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `pid` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`type_id`),
   KEY `pid` (`pid`,`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Àà±ð±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,16 +248,16 @@ DROP TABLE IF EXISTS `books`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `books` (
   `bookid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'BOOKID',
-  `bookname` varchar(20) NOT NULL DEFAULT '' COMMENT 'Ð¡ËµÃû³Æ',
-  `author` varchar(20) NOT NULL DEFAULT '' COMMENT '×÷Õß',
-  `status` tinyint(3) unsigned NOT NULL COMMENT '×´Ì¬£¨0£ºÒÑÍê±¾£»1£ºÁ¬ÔØÖÐ£»2£ºÌ«¼à£©',
-  `sale_type` enum('1','0') NOT NULL DEFAULT '1' COMMENT 'ÏúÊÛÀàÐÍ£¨0£ºÕû±¾³öÊÛ£»1£ºÕÂ½Ú³öÊÛ£©',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ìí¼ÓÊ±¼ä',
+  `bookname` varchar(20) NOT NULL DEFAULT '' COMMENT 'Ð¡Ëµï¿½ï¿½ï¿½ï¿½',
+  `author` varchar(20) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+  `status` tinyint(3) unsigned NOT NULL COMMENT '×´Ì¬ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ê±¾ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½2ï¿½ï¿½Ì«ï¿½à£©',
+  `sale_type` enum('1','0') NOT NULL DEFAULT '1' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û£ï¿½1ï¿½ï¿½ï¿½Â½Ú³ï¿½ï¿½Û£ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`bookid`),
   KEY `bname` (`bookname`),
   KEY `author` (`author`),
   KEY `ctime` (`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='µç×ÓÊé';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,16 +277,16 @@ DROP TABLE IF EXISTS `channel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `channel` (
-  `channelid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ÇþµÀID',
-  `channelname` varchar(30) NOT NULL DEFAULT '' COMMENT 'ÇþµÀÃû³Æ',
-  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§id',
-  `proportion` decimal(3,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '·Ö³É',
-  `readcount` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT 'Òýµ¼¹Ø×¢µÄÔÄ¶ÁÊý',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-  `type` varchar(5) NOT NULL DEFAULT '' COMMENT 'ÀàÐÍ',
-  `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '¸¸ÇþµÀID',
-  `one` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÈßÓà×Ö¶Î1',
-  `two` varchar(30) NOT NULL DEFAULT '' COMMENT 'ÈßÓà×Ö¶Î1',
+  `channelid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ï¿½ï¿½ï¿½ï¿½ID',
+  `channelname` varchar(30) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ã»ï¿½id',
+  `proportion` decimal(3,2) unsigned NOT NULL DEFAULT '0.00' COMMENT 'ï¿½Ö³ï¿½',
+  `readcount` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `type` varchar(5) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+  `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ID',
+  `one` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½1',
+  `two` varchar(30) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½1',
   PRIMARY KEY (`channelid`),
   UNIQUE KEY `channelname` (`channelname`),
   KEY `uid` (`uid`),
@@ -313,14 +313,14 @@ DROP TABLE IF EXISTS `channel_login`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `channel_login` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§ID',
-  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÇþµÀID',
-  `login_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'µÇÂ¼Ê±¼ä',
-  `ip` varchar(15) NOT NULL DEFAULT '' COMMENT 'IPµØÖ·',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ã»ï¿½ID',
+  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ID',
+  `login_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½Â¼Ê±ï¿½ï¿½',
+  `ip` varchar(15) NOT NULL DEFAULT '' COMMENT 'IPï¿½ï¿½Ö·',
   PRIMARY KEY (`id`),
   KEY `uil` (`uid`,`ip`,`login_time`),
   KEY `uli` (`uid`,`login_time`,`ip`,`channelid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÇþµÀµÇÂ¼¼ÇÂ¼';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Â¼';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -341,22 +341,22 @@ DROP TABLE IF EXISTS `chapter`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chapter` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `chapterid` int(10) unsigned NOT NULL COMMENT 'ÕÂ½ÚÊý',
-  `content` mediumtext NOT NULL COMMENT 'ÄÚÈÝ',
-  `chapter_name` varchar(30) NOT NULL DEFAULT '' COMMENT 'ÕÂ½ÚÃû³Æ',
+  `chapterid` int(10) unsigned NOT NULL COMMENT 'ï¿½Â½ï¿½ï¿½ï¿½',
+  `content` mediumtext NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+  `chapter_name` varchar(30) NOT NULL DEFAULT '' COMMENT 'ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½',
   `bookid` int(10) unsigned DEFAULT NULL COMMENT 'BOOKID',
-  `book_name` varchar(20) NOT NULL DEFAULT '' COMMENT 'ÊéÃû',
-  `price` smallint(5) unsigned DEFAULT '0' COMMENT 'ÊÛ¼Û',
-  `size` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '×Ö·ûÊý',
-  `status` enum('0','1') NOT NULL DEFAULT '1' COMMENT '×´Ì¬(0£º²»¿É¶Á£»1£º¿É¶Á)',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ê±¼ä',
+  `book_name` varchar(20) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+  `price` smallint(5) unsigned DEFAULT '0' COMMENT 'ï¿½Û¼ï¿½',
+  `size` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ö·ï¿½ï¿½ï¿½',
+  `status` enum('0','1') NOT NULL DEFAULT '1' COMMENT '×´Ì¬(0ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½É¶ï¿½)',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ê±ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `chapterid` (`chapterid`),
   KEY `bookid` (`bookid`),
   KEY `bname` (`book_name`),
   KEY `size` (`size`),
   KEY `ctime` (`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÕÂ½ÚÄÚÈÝ';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -377,16 +377,16 @@ DROP TABLE IF EXISTS `comment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§ID',
-  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Êé¼®ID',
-  `chapterid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÕÂ½ÚID',
-  `content` varchar(255) DEFAULT '' COMMENT 'ÆÀÂÛÄÚÈÝ',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ê±¼ä',
-  `is_show` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ÊÇ·ñÕ¹Ê¾',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ã»ï¿½ID',
+  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½é¼®ID',
+  `chapterid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Â½ï¿½ID',
+  `content` varchar(255) DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ê±ï¿½ï¿½',
+  `is_show` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ç·ï¿½Õ¹Ê¾',
   PRIMARY KEY (`id`),
   KEY `ub` (`uid`,`bookid`),
   KEY `bookid` (`bookid`,`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÆÀÂÛ';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,20 +407,20 @@ DROP TABLE IF EXISTS `extend`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `extend` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `ex_name` varchar(30) NOT NULL COMMENT 'Ãû³Æ/±êÌâ',
-  `ex_url` varchar(255) NOT NULL DEFAULT '' COMMENT 'ÍÆ¹ãÁ´½Ó',
-  `s_url` varchar(30) NOT NULL DEFAULT '' COMMENT '¶ÌÁ´½Ó',
-  `crc_url` int(11) NOT NULL DEFAULT '0' COMMENT '¼ÓÃÜurl',
-  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÇþµÀID',
+  `ex_name` varchar(30) NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½',
+  `ex_url` varchar(255) NOT NULL DEFAULT '' COMMENT 'ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `s_url` varchar(30) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `crc_url` int(11) NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½url',
+  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ID',
   `book_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'bookID',
-  `follow_order` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT '¹Ø×¢ÕÂ½Ú',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
+  `follow_order` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT 'ï¿½ï¿½×¢ï¿½Â½ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `channleid` (`channelid`,`create_time`),
   KEY `hash_url` (`crc_url`,`s_url`),
   KEY `bookid` (`book_id`),
   KEY `ex_name` (`ex_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÍÆ¹ã';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½Æ¹ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,14 +441,14 @@ DROP TABLE IF EXISTS `extend_res`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `extend_res` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `exid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÍÆ¹ãÁ´½ÓID',
-  `click` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'µã»÷Êý',
-  `refill` decimal(8,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '³äÖµ',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '×î½ü³äÖµÊ±¼ä',
+  `exid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ID',
+  `click` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `refill` decimal(8,2) unsigned NOT NULL DEFAULT '0.00' COMMENT 'ï¿½ï¿½Öµ',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÊ±ï¿½ï¿½',
   PRIMARY KEY (`id`),
   UNIQUE KEY `exid` (`exid`),
   KEY `click` (`click`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÍÆ¹ãÐ§Òæ';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½Æ¹ï¿½Ð§ï¿½ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -469,17 +469,17 @@ DROP TABLE IF EXISTS `pay_log`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pay_log` (
   `payid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§id',
-  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Êé¼®ID',
-  `money` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '½ð¶î',
-  `is_pay` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ÊÇ·ñÖ§¸¶',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÇþµÀid',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ã»ï¿½id',
+  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½é¼®ID',
+  `money` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½',
+  `is_pay` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ç·ï¿½Ö§ï¿½ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½id',
   PRIMARY KEY (`payid`),
   KEY `umb` (`uid`,`money`,`bookid`),
   KEY `cu` (`uid`,`channelid`),
   KEY `cc` (`channelid`,`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='³äÖµ¼ÇÂ¼';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½ï¿½Öµï¿½ï¿½Â¼';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,9 +499,9 @@ DROP TABLE IF EXISTS `power`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `power` (
-  `powerid` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'È¨ÏÞid',
-  `power_name` varchar(20) NOT NULL COMMENT 'È¨ÏÞÃû³Æ',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ìí¼ÓÊ±¼ä',
+  `powerid` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'È¨ï¿½ï¿½id',
+  `power_name` varchar(20) NOT NULL COMMENT 'È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`powerid`),
   KEY `power_name` (`power_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -525,8 +525,8 @@ DROP TABLE IF EXISTS `power_rose`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `power_rose` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `roseid` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '½ÇÉ«ID',
-  `powerid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'È¨ÏÞID',
+  `roseid` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½É«ID',
+  `powerid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'È¨ï¿½ï¿½ID',
   PRIMARY KEY (`id`),
   KEY `rid` (`roseid`,`powerid`),
   KEY `power_id` (`powerid`,`roseid`)
@@ -551,14 +551,14 @@ DROP TABLE IF EXISTS `read_log`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `read_log` (
   `logid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§id',
-  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Êé¼®ID',
-  `chapterid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÕÂ½Úid',
-  `rtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÔÄ¶ÁÊ±¼ä',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ã»ï¿½id',
+  `bookid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½é¼®ID',
+  `chapterid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Â½ï¿½id',
+  `rtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ä¶ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`logid`),
   KEY `all` (`uid`,`bookid`,`chapterid`,`rtime`),
   KEY `ur` (`uid`,`rtime`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÔÄ¶Á¼ÇÂ¼';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½Ä¶ï¿½ï¿½ï¿½Â¼';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -579,9 +579,9 @@ DROP TABLE IF EXISTS `rose`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rose` (
   `roseid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `rose_name` varchar(10) NOT NULL DEFAULT '' COMMENT '½ÇÉ«Ãû³Æ',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-  `by_user` varchar(20) NOT NULL DEFAULT '' COMMENT '´´½¨ÈË',
+  `rose_name` varchar(10) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `by_user` varchar(20) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
   PRIMARY KEY (`roseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -604,10 +604,10 @@ DROP TABLE IF EXISTS `user_rose`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_rose` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `rid` smallint(5) unsigned NOT NULL COMMENT '½ÇÉ«ID',
-  `userid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§ID',
-  `byuser` varchar(20) NOT NULL DEFAULT 'admin' COMMENT '²Ù×÷ÈË',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '²Ù×÷Ê±¼ä',
+  `rid` smallint(5) unsigned NOT NULL COMMENT 'ï¿½ï¿½É«ID',
+  `userid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ã»ï¿½ID',
+  `byuser` varchar(20) NOT NULL DEFAULT 'admin' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`id`),
   KEY `r_u` (`userid`),
   KEY `rid` (`rid`,`userid`),
@@ -633,22 +633,22 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nick` varchar(30) NOT NULL DEFAULT '' COMMENT 'êÇ³Æ',
+  `nick` varchar(30) NOT NULL DEFAULT '' COMMENT 'ï¿½Ç³ï¿½',
   `openid` char(32) NOT NULL DEFAULT '' COMMENT 'openID',
-  `password` varchar(40) NOT NULL DEFAULT '' COMMENT 'ÃÜÂë',
-  `hash_pwd` char(32) NOT NULL DEFAULT '' COMMENT '¼ÓÃÜÃÜÂë',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÇþµÀID',
-  `channelname` varchar(20) NOT NULL DEFAULT '' COMMENT 'ÇþµÀÃû³Æ',
-  `is_flow` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'ÊÇ·ñ¹Ø×¢',
-  `phone` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ÊÖ»úºÅ',
+  `password` varchar(40) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+  `hash_pwd` char(32) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `channelid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½ID',
+  `channelname` varchar(20) NOT NULL DEFAULT '' COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `is_flow` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'ï¿½Ç·ï¿½ï¿½×¢',
+  `phone` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'ï¿½Ö»ï¿½ï¿½ï¿½',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `openid` (`openid`,`channelid`),
   KEY `nick` (`nick`),
   KEY `ctime` (`addtime`,`channelid`),
   KEY `channel` (`channelid`),
   KEY `phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÓÃ»§';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ï¿½Ã»ï¿½';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

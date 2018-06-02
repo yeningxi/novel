@@ -23,11 +23,20 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-//首页
+//首页公告
     Route::get('/','Index\IndexController@index');
 
     Route::get('/notification','Notification\NotificationController@notification');
+    Route::get('/noticomment/{notice}','Notification\NotificationController@noticomment')->where('notice','\d+');
+    Route::get('/notification/{notice}/edit','Notification\NotificationController@notifiedit');
+    Route::post('/notification/{notice}/edit','Notification\NotificationController@notifieditstore');
 
-    Route::get('/noticomment','Notification\NotificationController@noticomment');
+    Route::get('/notification/{notice}/delete','Notification\NotificationController@notifidelete');
+//    Route::get('/noticomment','Notification\NotificationController@noticomment');
 
+    Route::get('notifiadd','Notification\NotificationController@notifiadd');
+    Route::post('notifiadd','Notification\NotificationController@notifistore');
+
+//  数据中心
+    Route::get('datacentre/{channel}','Channel\ChannelController@index');
 });
